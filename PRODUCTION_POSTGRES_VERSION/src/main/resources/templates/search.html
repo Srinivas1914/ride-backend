@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Rides</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #f5f5f5; }
+        .navbar { background: #00AFF5; color: white; padding: 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 20px; }
+        .ride-card { background: white; padding: 1.5rem; margin-bottom: 1rem; border-radius: 10px; }
+        .btn { padding: 0.5rem 1rem; background: #00AFF5; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <h2>🚗 BlaBlaCar</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Available Rides</h2>
+
+        <div th:if="${rides.isEmpty()}">
+            <p>No rides found</p>
+        </div>
+
+        <div th:each="ride : ${rides}">
+            <div class="ride-card">
+                <h3 th:text="${ride.departureCity + ' → ' + ride.destinationCity}"></h3>
+                <p th:text="${'Driver: ' + ride.driver.fullName}"></p>
+                <p th:text="${'Date: ' + ride.departureDate + ' | Time: ' + ride.departureTime}"></p>
+                <p th:text="${'Seats: ' + ride.availableSeats + '/' + ride.totalSeats + ' | ₹' + ride.pricePerSeat}"></p>
+                <a th:href="@{/ride/{id}(id=${ride.id})}" class="btn">Book</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Email</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #f5f5f5; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .verify-box { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: #00AFF5; margin-bottom: 1rem; }
+        .info { background: #e3f2fd; padding: 1rem; border-radius: 5px; margin-bottom: 1rem; }
+        input { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1.5rem; letter-spacing: 0.2em; }
+        button { width: 100%; padding: 0.75rem; background: #00AFF5; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="verify-box">
+        <h2>Verify Email</h2>
+        <div class="info">
+            <p>OTP sent to your email</p>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Check console for OTP (demo mode)</p>
+        </div>
+        <form method="post" action="/verify-email">
+            <input type="hidden" name="userId" th:value="${userId}">
+            <input type="text" name="otp" placeholder="Enter 6-digit OTP" maxlength="6" required autofocus>
+            <button type="submit">Verify</button>
+        </form>
+    </div>
+</body>
+</html>

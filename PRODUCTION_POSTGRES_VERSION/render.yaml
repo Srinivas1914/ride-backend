@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: blablacar-production
+    env: java
+    buildCommand: mvn clean install -DskipTests
+    startCommand: java -jar target/rideshare-production-1.0.0.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+
+databases:
+  - name: blablacar-db
+    databaseName: blablacar

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #f5f5f5; }
+        .navbar { background: #00AFF5; color: white; padding: 1rem; }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 20px; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 10px; text-align: center; }
+        .stat-number { font-size: 2rem; color: #00AFF5; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <h2>🔐 Admin Panel</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <div class="stat-number" th:text="${totalUsers}"></div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Rides</h3>
+                <div class="stat-number" th:text="${totalRides}"></div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Bookings</h3>
+                <div class="stat-number" th:text="${totalBookings}"></div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Rides</h3>
+                <div class="stat-number">...</div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 10px;">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="/admin/users">Manage Users</a></li>
+                <li><a href="/admin/rides">Manage Rides</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

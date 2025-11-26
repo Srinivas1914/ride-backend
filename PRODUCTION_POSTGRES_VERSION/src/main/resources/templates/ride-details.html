@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ride Details</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #f5f5f5; padding: 2rem; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 10px; }
+        h2 { color: #00AFF5; margin-bottom: 1rem; }
+        .info { margin: 1rem 0; padding: 0.75rem; background: #f9f9f9; border-left: 4px solid #00AFF5; }
+        input { padding: 0.5rem; width: 100%; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 0.75rem; background: #00AFF5; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/search" style="text-decoration: none; color: #00AFF5;">← Back</a>
+        <h2 th:text="${ride.departureCity + ' → ' + ride.destinationCity}"></h2>
+
+        <div class="info">
+            <p><strong>Driver:</strong> <span th:text="${ride.driver.fullName}"></span></p>
+            <p><strong>Date:</strong> <span th:text="${ride.departureDate}"></span></p>
+            <p><strong>Time:</strong> <span th:text="${ride.departureTime}"></span></p>
+            <p><strong>Available Seats:</strong> <span th:text="${ride.availableSeats}"></span></p>
+            <p><strong>Price per Seat:</strong> ₹<span th:text="${ride.pricePerSeat}"></span></p>
+        </div>
+
+        <form method="post" th:action="@{/book-ride/{id}(id=${ride.id})}">
+            <label>Number of Seats</label>
+            <input type="number" name="seats" min="1" th:max="${ride.availableSeats}" value="1">
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+</body>
+</html>
